@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Universite_MVCASPNET_ProjesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Universite_Dersler">
+          <Key>
+            <PropertyRef Name="DersNo" />
+          </Key>
+          <Property Name="DersNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DersAdi" Type="varchar" MaxLength="50" />
+          <Property Name="DersKodu" Type="varchar" MaxLength="50" />
+          <Property Name="DersOgretimGorevlisi" Type="varchar" MaxLength="50" />
+          <Property Name="BaslamaTarihi" Type="datetime" />
+          <Property Name="BitisTarihi" Type="datetime" />
+          <Property Name="FakulteBolumNo" Type="int" />
+          <Property Name="OgretimGorevlisiNo" Type="int" />
+          <Property Name="OgrenciNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Universite_FakulteBolumleri">
+          <Key>
+            <PropertyRef Name="FakulteBolumNo" />
+          </Key>
+          <Property Name="FakulteBolumNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FakulteBolumBaskani" Type="varchar" MaxLength="50" />
+          <Property Name="FakulteBolumBasariPuanlamasi" Type="int" />
+          <Property Name="OgrenciSayisi" Type="int" />
+          <Property Name="OgretimGorevlisiSayisi" Type="int" />
+          <Property Name="TelefonNo" Type="varchar" MaxLength="50" />
+          <Property Name="OgrenciNo" Type="int" />
+          <Property Name="ProjeNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Universite_Ogrenciler">
+          <Key>
+            <PropertyRef Name="OgrenciNo" />
+          </Key>
+          <Property Name="OgrenciNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgrenciAdSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="OgrenciPuanlama" Type="int" />
+          <Property Name="Yas" Type="int" />
+          <Property Name="Adres" Type="varchar" MaxLength="50" />
+          <Property Name="Odeme" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProjeNo" Type="int" />
+          <Property Name="FakulteBolumNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Universite_OgretimGorevlileri">
+          <Key>
+            <PropertyRef Name="OgretimGorevlisiNo" />
+          </Key>
+          <Property Name="OgretimGorevlisiNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgretimGorevlisiAdiSoyadi" Type="varchar" MaxLength="50" />
+          <Property Name="OgretimGorevlisiOkul" Type="varchar" MaxLength="50" />
+          <Property Name="OgretimGorevlisiDers" Type="varchar" MaxLength="50" />
+          <Property Name="OgretimGorevlisiProje" Type="varchar" MaxLength="50" />
+          <Property Name="TelefonNo" Type="varchar" MaxLength="50" />
+          <Property Name="FakulteBolumNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Universite_Projeler">
+          <Key>
+            <PropertyRef Name="ProjeNo" />
+          </Key>
+          <Property Name="ProjeNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeAdi" Type="varchar" MaxLength="50" />
+          <Property Name="ProjeYoneticisi" Type="varchar" MaxLength="50" />
+          <Property Name="ProjePersoneli" Type="varchar" MaxLength="50" />
+          <Property Name="BaslamaTarihi" Type="datetime" />
+          <Property Name="BitisTarihi" Type="datetime" />
+          <Property Name="ProjePuanlama" Type="int" />
+          <Property Name="Makale" Type="bit" />
+          <Property Name="OgretimGorevlisiNo" Type="int" />
+          <Property Name="OgrenciNo" Type="int" />
+          <Property Name="FakulteBolumNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Universite_Users">
+          <Key>
+            <PropertyRef Name="KullaniciNo" />
+          </Key>
+          <Property Name="KullaniciNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="varchar" MaxLength="50" />
+          <Property Name="Sifre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Universite_Dersler_Universite_FakulteBolumleri">
+          <End Role="Universite_FakulteBolumleri" Type="Self.Universite_FakulteBolumleri" Multiplicity="0..1" />
+          <End Role="Universite_Dersler" Type="Self.Universite_Dersler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_FakulteBolumleri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Principal>
+            <Dependent Role="Universite_Dersler">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Dersler_Universite_Ogrenciler">
+          <End Role="Universite_Ogrenciler" Type="Self.Universite_Ogrenciler" Multiplicity="0..1" />
+          <End Role="Universite_Dersler" Type="Self.Universite_Dersler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_Ogrenciler">
+              <PropertyRef Name="OgrenciNo" />
+            </Principal>
+            <Dependent Role="Universite_Dersler">
+              <PropertyRef Name="OgrenciNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Dersler_Universite_OgretimGorevlileri">
+          <End Role="Universite_OgretimGorevlileri" Type="Self.Universite_OgretimGorevlileri" Multiplicity="0..1" />
+          <End Role="Universite_Dersler" Type="Self.Universite_Dersler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_OgretimGorevlileri">
+              <PropertyRef Name="OgretimGorevlisiNo" />
+            </Principal>
+            <Dependent Role="Universite_Dersler">
+              <PropertyRef Name="OgretimGorevlisiNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Ogrenciler_Universite_FakulteBolumleri">
+          <End Role="Universite_FakulteBolumleri" Type="Self.Universite_FakulteBolumleri" Multiplicity="0..1" />
+          <End Role="Universite_Ogrenciler" Type="Self.Universite_Ogrenciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_FakulteBolumleri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Principal>
+            <Dependent Role="Universite_Ogrenciler">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Ogrenciler_Universite_Projeler">
+          <End Role="Universite_Projeler" Type="Self.Universite_Projeler" Multiplicity="0..1" />
+          <End Role="Universite_Ogrenciler" Type="Self.Universite_Ogrenciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_Projeler">
+              <PropertyRef Name="ProjeNo" />
+            </Principal>
+            <Dependent Role="Universite_Ogrenciler">
+              <PropertyRef Name="ProjeNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri">
+          <End Role="Universite_FakulteBolumleri" Type="Self.Universite_FakulteBolumleri" Multiplicity="0..1" />
+          <End Role="Universite_OgretimGorevlileri" Type="Self.Universite_OgretimGorevlileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_FakulteBolumleri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Principal>
+            <Dependent Role="Universite_OgretimGorevlileri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Projeler_Universite_FakulteBolumleri">
+          <End Role="Universite_FakulteBolumleri" Type="Self.Universite_FakulteBolumleri" Multiplicity="0..1" />
+          <End Role="Universite_Projeler" Type="Self.Universite_Projeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_FakulteBolumleri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Principal>
+            <Dependent Role="Universite_Projeler">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Projeler_Universite_OgretimGorevlileri">
+          <End Role="Universite_OgretimGorevlileri" Type="Self.Universite_OgretimGorevlileri" Multiplicity="0..1" />
+          <End Role="Universite_Projeler" Type="Self.Universite_Projeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_OgretimGorevlileri">
+              <PropertyRef Name="OgretimGorevlisiNo" />
+            </Principal>
+            <Dependent Role="Universite_Projeler">
+              <PropertyRef Name="OgretimGorevlisiNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Universite_MVCASPNET_ProjesiModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Universite_Dersler" EntityType="Self.Universite_Dersler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Universite_FakulteBolumleri" EntityType="Self.Universite_FakulteBolumleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Universite_Ogrenciler" EntityType="Self.Universite_Ogrenciler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Universite_OgretimGorevlileri" EntityType="Self.Universite_OgretimGorevlileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Universite_Projeler" EntityType="Self.Universite_Projeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Universite_Users" EntityType="Self.Universite_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Universite_Dersler_Universite_FakulteBolumleri" Association="Self.FK_Universite_Dersler_Universite_FakulteBolumleri">
+            <End Role="Universite_FakulteBolumleri" EntitySet="Universite_FakulteBolumleri" />
+            <End Role="Universite_Dersler" EntitySet="Universite_Dersler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Dersler_Universite_Ogrenciler" Association="Self.FK_Universite_Dersler_Universite_Ogrenciler">
+            <End Role="Universite_Ogrenciler" EntitySet="Universite_Ogrenciler" />
+            <End Role="Universite_Dersler" EntitySet="Universite_Dersler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Dersler_Universite_OgretimGorevlileri" Association="Self.FK_Universite_Dersler_Universite_OgretimGorevlileri">
+            <End Role="Universite_OgretimGorevlileri" EntitySet="Universite_OgretimGorevlileri" />
+            <End Role="Universite_Dersler" EntitySet="Universite_Dersler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Ogrenciler_Universite_FakulteBolumleri" Association="Self.FK_Universite_Ogrenciler_Universite_FakulteBolumleri">
+            <End Role="Universite_FakulteBolumleri" EntitySet="Universite_FakulteBolumleri" />
+            <End Role="Universite_Ogrenciler" EntitySet="Universite_Ogrenciler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Ogrenciler_Universite_Projeler" Association="Self.FK_Universite_Ogrenciler_Universite_Projeler">
+            <End Role="Universite_Projeler" EntitySet="Universite_Projeler" />
+            <End Role="Universite_Ogrenciler" EntitySet="Universite_Ogrenciler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri" Association="Self.FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri">
+            <End Role="Universite_FakulteBolumleri" EntitySet="Universite_FakulteBolumleri" />
+            <End Role="Universite_OgretimGorevlileri" EntitySet="Universite_OgretimGorevlileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Projeler_Universite_FakulteBolumleri" Association="Self.FK_Universite_Projeler_Universite_FakulteBolumleri">
+            <End Role="Universite_FakulteBolumleri" EntitySet="Universite_FakulteBolumleri" />
+            <End Role="Universite_Projeler" EntitySet="Universite_Projeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Projeler_Universite_OgretimGorevlileri" Association="Self.FK_Universite_Projeler_Universite_OgretimGorevlileri">
+            <End Role="Universite_OgretimGorevlileri" EntitySet="Universite_OgretimGorevlileri" />
+            <End Role="Universite_Projeler" EntitySet="Universite_Projeler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Universite_MVCASPNET_ProjesiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Universite_Dersler">
+          <Key>
+            <PropertyRef Name="DersNo" />
+          </Key>
+          <Property Name="DersNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DersAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DersKodu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DersOgretimGorevlisi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BaslamaTarihi" Type="DateTime" Precision="3" />
+          <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="FakulteBolumNo" Type="Int32" />
+          <Property Name="OgretimGorevlisiNo" Type="Int32" />
+          <Property Name="OgrenciNo" Type="Int32" />
+          <NavigationProperty Name="Universite_FakulteBolumleri" Relationship="Self.FK_Universite_Dersler_Universite_FakulteBolumleri" FromRole="Universite_Dersler" ToRole="Universite_FakulteBolumleri" />
+          <NavigationProperty Name="Universite_Ogrenciler" Relationship="Self.FK_Universite_Dersler_Universite_Ogrenciler" FromRole="Universite_Dersler" ToRole="Universite_Ogrenciler" />
+          <NavigationProperty Name="Universite_OgretimGorevlileri" Relationship="Self.FK_Universite_Dersler_Universite_OgretimGorevlileri" FromRole="Universite_Dersler" ToRole="Universite_OgretimGorevlileri" />
+        </EntityType>
+        <EntityType Name="Universite_FakulteBolumleri">
+          <Key>
+            <PropertyRef Name="FakulteBolumNo" />
+          </Key>
+          <Property Name="FakulteBolumNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FakulteBolumBaskani" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FakulteBolumBasariPuanlamasi" Type="Int32" />
+          <Property Name="OgrenciSayisi" Type="Int32" />
+          <Property Name="OgretimGorevlisiSayisi" Type="Int32" />
+          <Property Name="TelefonNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgrenciNo" Type="Int32" />
+          <Property Name="ProjeNo" Type="Int32" />
+          <NavigationProperty Name="Universite_Dersler" Relationship="Self.FK_Universite_Dersler_Universite_FakulteBolumleri" FromRole="Universite_FakulteBolumleri" ToRole="Universite_Dersler" />
+          <NavigationProperty Name="Universite_Ogrenciler" Relationship="Self.FK_Universite_Ogrenciler_Universite_FakulteBolumleri" FromRole="Universite_FakulteBolumleri" ToRole="Universite_Ogrenciler" />
+          <NavigationProperty Name="Universite_OgretimGorevlileri" Relationship="Self.FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri" FromRole="Universite_FakulteBolumleri" ToRole="Universite_OgretimGorevlileri" />
+          <NavigationProperty Name="Universite_Projeler" Relationship="Self.FK_Universite_Projeler_Universite_FakulteBolumleri" FromRole="Universite_FakulteBolumleri" ToRole="Universite_Projeler" />
+        </EntityType>
+        <EntityType Name="Universite_Ogrenciler">
+          <Key>
+            <PropertyRef Name="OgrenciNo" />
+          </Key>
+          <Property Name="OgrenciNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgrenciAdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgrenciPuanlama" Type="Int32" />
+          <Property Name="Yas" Type="Int32" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Odeme" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProjeNo" Type="Int32" />
+          <Property Name="FakulteBolumNo" Type="Int32" />
+          <NavigationProperty Name="Universite_Dersler" Relationship="Self.FK_Universite_Dersler_Universite_Ogrenciler" FromRole="Universite_Ogrenciler" ToRole="Universite_Dersler" />
+          <NavigationProperty Name="Universite_FakulteBolumleri" Relationship="Self.FK_Universite_Ogrenciler_Universite_FakulteBolumleri" FromRole="Universite_Ogrenciler" ToRole="Universite_FakulteBolumleri" />
+          <NavigationProperty Name="Universite_Projeler" Relationship="Self.FK_Universite_Ogrenciler_Universite_Projeler" FromRole="Universite_Ogrenciler" ToRole="Universite_Projeler" />
+        </EntityType>
+        <EntityType Name="Universite_OgretimGorevlileri">
+          <Key>
+            <PropertyRef Name="OgretimGorevlisiNo" />
+          </Key>
+          <Property Name="OgretimGorevlisiNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgretimGorevlisiAdiSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgretimGorevlisiOkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgretimGorevlisiDers" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgretimGorevlisiProje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FakulteBolumNo" Type="Int32" />
+          <NavigationProperty Name="Universite_Dersler" Relationship="Self.FK_Universite_Dersler_Universite_OgretimGorevlileri" FromRole="Universite_OgretimGorevlileri" ToRole="Universite_Dersler" />
+          <NavigationProperty Name="Universite_FakulteBolumleri" Relationship="Self.FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri" FromRole="Universite_OgretimGorevlileri" ToRole="Universite_FakulteBolumleri" />
+          <NavigationProperty Name="Universite_Projeler" Relationship="Self.FK_Universite_Projeler_Universite_OgretimGorevlileri" FromRole="Universite_OgretimGorevlileri" ToRole="Universite_Projeler" />
+        </EntityType>
+        <EntityType Name="Universite_Projeler">
+          <Key>
+            <PropertyRef Name="ProjeNo" />
+          </Key>
+          <Property Name="ProjeNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProjeYoneticisi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProjePersoneli" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BaslamaTarihi" Type="DateTime" Precision="3" />
+          <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="ProjePuanlama" Type="Int32" />
+          <Property Name="Makale" Type="Boolean" />
+          <Property Name="OgretimGorevlisiNo" Type="Int32" />
+          <Property Name="OgrenciNo" Type="Int32" />
+          <Property Name="FakulteBolumNo" Type="Int32" />
+          <NavigationProperty Name="Universite_FakulteBolumleri" Relationship="Self.FK_Universite_Projeler_Universite_FakulteBolumleri" FromRole="Universite_Projeler" ToRole="Universite_FakulteBolumleri" />
+          <NavigationProperty Name="Universite_Ogrenciler" Relationship="Self.FK_Universite_Ogrenciler_Universite_Projeler" FromRole="Universite_Projeler" ToRole="Universite_Ogrenciler" />
+          <NavigationProperty Name="Universite_OgretimGorevlileri" Relationship="Self.FK_Universite_Projeler_Universite_OgretimGorevlileri" FromRole="Universite_Projeler" ToRole="Universite_OgretimGorevlileri" />
+        </EntityType>
+        <EntityType Name="Universite_Users">
+          <Key>
+            <PropertyRef Name="KullaniciNo" />
+          </Key>
+          <Property Name="KullaniciNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Universite_Dersler_Universite_FakulteBolumleri">
+          <End Role="Universite_FakulteBolumleri" Type="Self.Universite_FakulteBolumleri" Multiplicity="0..1" />
+          <End Role="Universite_Dersler" Type="Self.Universite_Dersler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_FakulteBolumleri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Principal>
+            <Dependent Role="Universite_Dersler">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Dersler_Universite_Ogrenciler">
+          <End Role="Universite_Ogrenciler" Type="Self.Universite_Ogrenciler" Multiplicity="0..1" />
+          <End Role="Universite_Dersler" Type="Self.Universite_Dersler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_Ogrenciler">
+              <PropertyRef Name="OgrenciNo" />
+            </Principal>
+            <Dependent Role="Universite_Dersler">
+              <PropertyRef Name="OgrenciNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Dersler_Universite_OgretimGorevlileri">
+          <End Role="Universite_OgretimGorevlileri" Type="Self.Universite_OgretimGorevlileri" Multiplicity="0..1" />
+          <End Role="Universite_Dersler" Type="Self.Universite_Dersler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_OgretimGorevlileri">
+              <PropertyRef Name="OgretimGorevlisiNo" />
+            </Principal>
+            <Dependent Role="Universite_Dersler">
+              <PropertyRef Name="OgretimGorevlisiNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Ogrenciler_Universite_FakulteBolumleri">
+          <End Role="Universite_FakulteBolumleri" Type="Self.Universite_FakulteBolumleri" Multiplicity="0..1" />
+          <End Role="Universite_Ogrenciler" Type="Self.Universite_Ogrenciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_FakulteBolumleri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Principal>
+            <Dependent Role="Universite_Ogrenciler">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri">
+          <End Role="Universite_FakulteBolumleri" Type="Self.Universite_FakulteBolumleri" Multiplicity="0..1" />
+          <End Role="Universite_OgretimGorevlileri" Type="Self.Universite_OgretimGorevlileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_FakulteBolumleri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Principal>
+            <Dependent Role="Universite_OgretimGorevlileri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Projeler_Universite_FakulteBolumleri">
+          <End Role="Universite_FakulteBolumleri" Type="Self.Universite_FakulteBolumleri" Multiplicity="0..1" />
+          <End Role="Universite_Projeler" Type="Self.Universite_Projeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_FakulteBolumleri">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Principal>
+            <Dependent Role="Universite_Projeler">
+              <PropertyRef Name="FakulteBolumNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Ogrenciler_Universite_Projeler">
+          <End Role="Universite_Projeler" Type="Self.Universite_Projeler" Multiplicity="0..1" />
+          <End Role="Universite_Ogrenciler" Type="Self.Universite_Ogrenciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_Projeler">
+              <PropertyRef Name="ProjeNo" />
+            </Principal>
+            <Dependent Role="Universite_Ogrenciler">
+              <PropertyRef Name="ProjeNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Universite_Projeler_Universite_OgretimGorevlileri">
+          <End Role="Universite_OgretimGorevlileri" Type="Self.Universite_OgretimGorevlileri" Multiplicity="0..1" />
+          <End Role="Universite_Projeler" Type="Self.Universite_Projeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universite_OgretimGorevlileri">
+              <PropertyRef Name="OgretimGorevlisiNo" />
+            </Principal>
+            <Dependent Role="Universite_Projeler">
+              <PropertyRef Name="OgretimGorevlisiNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Universite_MVCASPNET_ProjesiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Universite_Dersler" EntityType="Self.Universite_Dersler" />
+          <EntitySet Name="Universite_FakulteBolumleri" EntityType="Self.Universite_FakulteBolumleri" />
+          <EntitySet Name="Universite_Ogrenciler" EntityType="Self.Universite_Ogrenciler" />
+          <EntitySet Name="Universite_OgretimGorevlileri" EntityType="Self.Universite_OgretimGorevlileri" />
+          <EntitySet Name="Universite_Projeler" EntityType="Self.Universite_Projeler" />
+          <EntitySet Name="Universite_Users" EntityType="Self.Universite_Users" />
+          <AssociationSet Name="FK_Universite_Dersler_Universite_FakulteBolumleri" Association="Self.FK_Universite_Dersler_Universite_FakulteBolumleri">
+            <End Role="Universite_FakulteBolumleri" EntitySet="Universite_FakulteBolumleri" />
+            <End Role="Universite_Dersler" EntitySet="Universite_Dersler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Dersler_Universite_Ogrenciler" Association="Self.FK_Universite_Dersler_Universite_Ogrenciler">
+            <End Role="Universite_Ogrenciler" EntitySet="Universite_Ogrenciler" />
+            <End Role="Universite_Dersler" EntitySet="Universite_Dersler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Dersler_Universite_OgretimGorevlileri" Association="Self.FK_Universite_Dersler_Universite_OgretimGorevlileri">
+            <End Role="Universite_OgretimGorevlileri" EntitySet="Universite_OgretimGorevlileri" />
+            <End Role="Universite_Dersler" EntitySet="Universite_Dersler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Ogrenciler_Universite_FakulteBolumleri" Association="Self.FK_Universite_Ogrenciler_Universite_FakulteBolumleri">
+            <End Role="Universite_FakulteBolumleri" EntitySet="Universite_FakulteBolumleri" />
+            <End Role="Universite_Ogrenciler" EntitySet="Universite_Ogrenciler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri" Association="Self.FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri">
+            <End Role="Universite_FakulteBolumleri" EntitySet="Universite_FakulteBolumleri" />
+            <End Role="Universite_OgretimGorevlileri" EntitySet="Universite_OgretimGorevlileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Projeler_Universite_FakulteBolumleri" Association="Self.FK_Universite_Projeler_Universite_FakulteBolumleri">
+            <End Role="Universite_FakulteBolumleri" EntitySet="Universite_FakulteBolumleri" />
+            <End Role="Universite_Projeler" EntitySet="Universite_Projeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Ogrenciler_Universite_Projeler" Association="Self.FK_Universite_Ogrenciler_Universite_Projeler">
+            <End Role="Universite_Projeler" EntitySet="Universite_Projeler" />
+            <End Role="Universite_Ogrenciler" EntitySet="Universite_Ogrenciler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Universite_Projeler_Universite_OgretimGorevlileri" Association="Self.FK_Universite_Projeler_Universite_OgretimGorevlileri">
+            <End Role="Universite_OgretimGorevlileri" EntitySet="Universite_OgretimGorevlileri" />
+            <End Role="Universite_Projeler" EntitySet="Universite_Projeler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Universite_MVCASPNET_ProjesiModelStoreContainer" CdmEntityContainer="Universite_MVCASPNET_ProjesiEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Universite_MVCASPNET_ProjesiModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universite_Dersler">
+            <EntityTypeMapping TypeName="Universite_MVCASPNET_ProjesiModel.Universite_Dersler">
+              <MappingFragment StoreEntitySet="Universite_Dersler">
+                <ScalarProperty Name="DersNo" ColumnName="DersNo" />
+                <ScalarProperty Name="DersAdi" ColumnName="DersAdi" />
+                <ScalarProperty Name="DersKodu" ColumnName="DersKodu" />
+                <ScalarProperty Name="DersOgretimGorevlisi" ColumnName="DersOgretimGorevlisi" />
+                <ScalarProperty Name="BaslamaTarihi" ColumnName="BaslamaTarihi" />
+                <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+                <ScalarProperty Name="FakulteBolumNo" ColumnName="FakulteBolumNo" />
+                <ScalarProperty Name="OgretimGorevlisiNo" ColumnName="OgretimGorevlisiNo" />
+                <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universite_FakulteBolumleri">
+            <EntityTypeMapping TypeName="Universite_MVCASPNET_ProjesiModel.Universite_FakulteBolumleri">
+              <MappingFragment StoreEntitySet="Universite_FakulteBolumleri">
+                <ScalarProperty Name="FakulteBolumNo" ColumnName="FakulteBolumNo" />
+                <ScalarProperty Name="FakulteBolumBaskani" ColumnName="FakulteBolumBaskani" />
+                <ScalarProperty Name="FakulteBolumBasariPuanlamasi" ColumnName="FakulteBolumBasariPuanlamasi" />
+                <ScalarProperty Name="OgrenciSayisi" ColumnName="OgrenciSayisi" />
+                <ScalarProperty Name="OgretimGorevlisiSayisi" ColumnName="OgretimGorevlisiSayisi" />
+                <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+                <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+                <ScalarProperty Name="ProjeNo" ColumnName="ProjeNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universite_Ogrenciler">
+            <EntityTypeMapping TypeName="Universite_MVCASPNET_ProjesiModel.Universite_Ogrenciler">
+              <MappingFragment StoreEntitySet="Universite_Ogrenciler">
+                <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+                <ScalarProperty Name="OgrenciAdSoyad" ColumnName="OgrenciAdSoyad" />
+                <ScalarProperty Name="OgrenciPuanlama" ColumnName="OgrenciPuanlama" />
+                <ScalarProperty Name="Yas" ColumnName="Yas" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Odeme" ColumnName="Odeme" />
+                <ScalarProperty Name="ProjeNo" ColumnName="ProjeNo" />
+                <ScalarProperty Name="FakulteBolumNo" ColumnName="FakulteBolumNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universite_OgretimGorevlileri">
+            <EntityTypeMapping TypeName="Universite_MVCASPNET_ProjesiModel.Universite_OgretimGorevlileri">
+              <MappingFragment StoreEntitySet="Universite_OgretimGorevlileri">
+                <ScalarProperty Name="OgretimGorevlisiNo" ColumnName="OgretimGorevlisiNo" />
+                <ScalarProperty Name="OgretimGorevlisiAdiSoyadi" ColumnName="OgretimGorevlisiAdiSoyadi" />
+                <ScalarProperty Name="OgretimGorevlisiOkul" ColumnName="OgretimGorevlisiOkul" />
+                <ScalarProperty Name="OgretimGorevlisiDers" ColumnName="OgretimGorevlisiDers" />
+                <ScalarProperty Name="OgretimGorevlisiProje" ColumnName="OgretimGorevlisiProje" />
+                <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+                <ScalarProperty Name="FakulteBolumNo" ColumnName="FakulteBolumNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universite_Projeler">
+            <EntityTypeMapping TypeName="Universite_MVCASPNET_ProjesiModel.Universite_Projeler">
+              <MappingFragment StoreEntitySet="Universite_Projeler">
+                <ScalarProperty Name="ProjeNo" ColumnName="ProjeNo" />
+                <ScalarProperty Name="ProjeAdi" ColumnName="ProjeAdi" />
+                <ScalarProperty Name="ProjeYoneticisi" ColumnName="ProjeYoneticisi" />
+                <ScalarProperty Name="ProjePersoneli" ColumnName="ProjePersoneli" />
+                <ScalarProperty Name="BaslamaTarihi" ColumnName="BaslamaTarihi" />
+                <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+                <ScalarProperty Name="ProjePuanlama" ColumnName="ProjePuanlama" />
+                <ScalarProperty Name="Makale" ColumnName="Makale" />
+                <ScalarProperty Name="OgretimGorevlisiNo" ColumnName="OgretimGorevlisiNo" />
+                <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+                <ScalarProperty Name="FakulteBolumNo" ColumnName="FakulteBolumNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universite_Users">
+            <EntityTypeMapping TypeName="Universite_MVCASPNET_ProjesiModel.Universite_Users">
+              <MappingFragment StoreEntitySet="Universite_Users">
+                <ScalarProperty Name="KullaniciNo" ColumnName="KullaniciNo" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Universite_ASP.NET_Bootstrap_Projesi.Models.Universite_Dersler>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_LayoutPage3ADMIN.cshtml";
+}
+
+
+<h2>Ders Ekranı</h2>
+
+
+<p>@Html.ActionLink("Create New", "YeniDers", null, new { @class = "btn btn-success" })</p>
+<table class="table-striped col-lg-12">
+    <tr>
+        
+     
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.DersAdi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.DersKodu)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.DersOgretimGorevlisi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.BaslamaTarihi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.BitisTarihi)
+
+        </th>
+
+        @*<th>
+
+            @Html.DisplayNameFor(Model => Model.FakulteBolumNo)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.OgretimGorevlisiNo)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.OgrenciNo)
+
+        </th>*@
+
+    </tr>
+
+    @foreach (var item in Model)
+
+    {
+<tr>
+  
+    <td>
+
+        @Html.DisplayFor(Model => item.DersAdi)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.DersKodu)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.DersOgretimGorevlisi)
+    </td>
+    <td>
+
+        @Html.DisplayFor(Model => item.BaslamaTarihi)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.BitisTarihi)
+
+    </td>
+
+    @*<td>
+
+        @Html.DisplayFor(Model => item.FakulteBolumNo)
+
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.OgretimGorevlisiNo)
+
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.OgrenciNo)
+
+    </td>*@
+
+    <td>
+        @Html.ActionLink("Edit", "DuzenleDers", new { dersno = item.DersNo }, new { @class = "btn btn-warning" }) | @Html.ActionLink("Delete", "DeleteDers", new { id = item.DersNo }, new { @class = "btn btn-warning" })
+
+    </td>
+
+</tr>
+    }
+
+
+</table>

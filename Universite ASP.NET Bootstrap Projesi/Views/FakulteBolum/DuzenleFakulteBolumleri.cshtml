@@ -1,0 +1,117 @@
+﻿@model  Universite_ASP.NET_Bootstrap_Projesi.Models.Universite_FakulteBolumleri
+@{
+    ViewBag.Title = "DuzenleFakulteBolumleri";
+    Layout = "~/Views/Shared/_LayoutPage3ADMIN.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.FakulteBolumNo)
+    <div class="form-horizontal"></div>
+
+    <h3>Fakülte Bölümleri Duzenleme Sayfası</h3>
+
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.FakulteBolumBaskani, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FakulteBolumBaskani, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FakulteBolumBaskani, "", new { @class = "text-danger" })
+
+
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FakulteBolumBasariPuanlamasi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FakulteBolumBasariPuanlamasi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FakulteBolumBasariPuanlamasi, "", new { @class = "text-danger" })
+
+
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OgrenciSayisi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.OgrenciSayisi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OgrenciSayisi, "", new { @class = "text-danger" })
+
+
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OgretimGorevlisiSayisi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.OgretimGorevlisiSayisi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OgretimGorevlisiSayisi, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.TelefonNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TelefonNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TelefonNo, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OgrenciNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.OgrenciNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OgrenciNo, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProjeNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProjeNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProjeNo, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>*@
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Edit" class="btn btn-success" />
+
+        </div>
+
+
+
+    </div>
+
+
+}
+
+<div>
+
+    @Html.ActionLink("Home", "Index", null, new { @class = "btn btn-success" })
+</div>
+
+

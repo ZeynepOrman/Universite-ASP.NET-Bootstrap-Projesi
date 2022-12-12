@@ -1,0 +1,102 @@
+﻿@model  Universite_ASP.NET_Bootstrap_Projesi.Models.Universite_Ogrenciler
+
+@{
+    ViewBag.Title = "DeleteOgrenci";
+    Layout = "~/Views/Shared/_LayoutPage3ADMIN.cshtml";
+}
+
+
+
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+
+<div>
+    <h4>Öğrenciler</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Model => Model.OgrenciAdSoyad)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciAdSoyad)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgrenciPuanlama)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.OgrenciPuanlama)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.Yas)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.Yas)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.Adres)
+
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.Adres)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.Odeme)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.Odeme)
+
+        </dd>
+
+        @*<dt>
+            @Html.DisplayFor(model => model.ProjeNo)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.ProjeNo)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.FakulteBolumNo)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.FakulteBolumNo)
+
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-success" /> |
+            @Html.ActionLink("Home", "Index", null, new { @class = "btn btn-success" })
+
+        </div>
+    }
+
+
+</div>
+

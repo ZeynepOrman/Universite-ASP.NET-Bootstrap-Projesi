@@ -1,0 +1,140 @@
+﻿@model IEnumerable<Universite_ASP.NET_Bootstrap_Projesi.Models.Universite_Projeler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage3ADMIN.cshtml";
+}
+
+<h2>Proje Ekranı</h2>
+
+
+<p>@Html.ActionLink("Create New", "YeniProje", null, new { @class = "btn btn-success" })</p>
+<table class="table-striped col-lg-12">
+    <tr class="col-lg-12">
+
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.ProjeAdi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.ProjeYoneticisi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.ProjePersoneli)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.BaslamaTarihi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.BitisTarihi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.ProjePuanlama)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.Makale)
+
+        </th>
+
+        @*<th>
+
+            @Html.DisplayNameFor(Model => Model.OgretimGorevlisiNo)
+
+        </th>*@
+
+        @*<th>
+
+            @Html.DisplayNameFor(Model => Model.OgrenciNo)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.FakulteBolumNo)
+
+        </th>*@
+
+    </tr>
+
+    @foreach (var item in Model)
+
+    {
+<tr>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.ProjeAdi)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.ProjeYoneticisi)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.ProjePersoneli)
+    </td>
+    <td>
+
+        @Html.DisplayFor(Model => item.BaslamaTarihi)
+    </td>
+    <td>
+
+        @Html.DisplayFor(Model => item.BitisTarihi)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.ProjePuanlama)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.Makale)
+    </td>
+
+    @*<td>
+
+        @Html.DisplayFor(Model => item.OgretimGorevlisiNo)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.OgrenciNo)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(Model => item.FakulteBolumNo)
+    </td>*@
+
+    <td>
+        @Html.ActionLink("Edit", "DuzenleProje", new { projeno = item.ProjeNo }, new { @class = "btn btn-warning" }) | @Html.ActionLink("Delete", "DeleteProje", new { id = item.ProjeNo }, new { @class = "btn btn-warning" })
+
+    </td>
+
+</tr>
+    }
+
+
+</table>

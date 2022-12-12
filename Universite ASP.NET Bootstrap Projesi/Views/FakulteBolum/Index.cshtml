@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Universite_ASP.NET_Bootstrap_Projesi.Models.Universite_FakulteBolumleri>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_LayoutPage3ADMIN.cshtml";
+}
+
+
+<h2>Fakülte Bölümleri Ekranı</h2>
+
+
+<p>@Html.ActionLink("Create New", "YeniFakulteBolumleri", null, new { @class = "btn btn-success" })</p>
+<table class="col-md-10">
+    <tr>
+
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.FakulteBolumBaskani)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.FakulteBolumBasariPuanlamasi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.OgrenciSayisi)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.OgretimGorevlisiSayisi)
+
+        </th>
+
+        @*<th>
+
+            @Html.DisplayNameFor(Model => Model.TelefonNo)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.OgrenciNo)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(Model => Model.ProjeNo)
+
+        </th>*@
+
+    </tr>
+
+    @foreach (var item in Model)
+
+    {
+        <tr>
+
+            <td>
+
+                @Html.DisplayFor(Model => item.FakulteBolumBaskani)
+            </td>
+
+            <td>
+
+                @Html.DisplayFor(Model => item.FakulteBolumBasariPuanlamasi)
+            </td>
+
+            <td>
+
+                @Html.DisplayFor(Model => item.OgrenciSayisi)
+            </td>
+            <td>
+
+                @Html.DisplayFor(Model => item.OgretimGorevlisiSayisi)
+            </td>
+            <td>
+
+                @*@Html.DisplayFor(Model => item.TelefonNo)
+            </td>
+
+            <td>
+
+                @Html.DisplayFor(Model => item.OgrenciNo)
+            </td>
+
+            <td>
+
+                @Html.DisplayFor(Model => item.ProjeNo)
+            </td>*@
+
+            <td>
+                @Html.ActionLink("Edit", "DuzenleFakulteBolumleri", new { fakultebolumno = item.FakulteBolumNo }, new { @class = "btn btn-warning" }) | @Html.ActionLink("Delete", "DeleteFakulteBolumleri", new { id = item.FakulteBolumNo }, new { @class = "btn btn-warning" })
+
+            </td>
+
+        </tr>
+    }
+
+
+</table>

@@ -1,0 +1,112 @@
+﻿@model  Universite_ASP.NET_Bootstrap_Projesi.Models.Universite_Dersler
+
+@{
+    ViewBag.Title = "DeleteDers";
+    Layout = "~/Views/Shared/_LayoutPage3ADMIN.cshtml";
+}
+
+
+
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+
+<div>
+    <h4>Dersler</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Model => Model.DersAdi)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DersAdi)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DersKodu)
+
+        </dt>
+
+        <dt>
+            @Html.DisplayFor(model => model.DersKodu)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.DersOgretimGorevlisi)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.DersOgretimGorevlisi)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.BaslamaTarihi)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.BaslamaTarihi)
+
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.BitisTarihi)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.BitisTarihi)
+
+        </dt>
+
+        @*<dd>
+            @Html.DisplayNameFor(model => model.FakulteBolumNo)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.FakulteBolumNo)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.OgretimGorevlisiNo)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.OgretimGorevlisiNo)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.OgrenciNo)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.OgrenciNo)
+
+        </dt>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-success" /> |
+            @Html.ActionLink("Home", "Index", null, new { @class = "btn btn-success" })
+
+        </div>
+    }
+
+
+</div>
+

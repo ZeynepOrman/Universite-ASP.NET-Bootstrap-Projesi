@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0c41099e4c6343679c9c78a49cc3db2d" Name="Diagram1">
+        <EntityTypeShape EntityType="Universite_MVCASPNET_ProjesiModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Universite_MVCASPNET_ProjesiModel.Universite_Dersler" Width="2.375" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Universite_MVCASPNET_ProjesiModel.Universite_FakulteBolumleri" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Universite_MVCASPNET_ProjesiModel.Universite_Ogrenciler" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Universite_MVCASPNET_ProjesiModel.Universite_OgretimGorevlileri" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Universite_MVCASPNET_ProjesiModel.Universite_Projeler" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Universite_MVCASPNET_ProjesiModel.Universite_Users" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Universite_MVCASPNET_ProjesiModel.FK_Universite_Dersler_Universite_FakulteBolumleri" ManuallyRouted="false" />
+        <AssociationConnector Association="Universite_MVCASPNET_ProjesiModel.FK_Universite_Dersler_Universite_Ogrenciler" ManuallyRouted="false" />
+        <AssociationConnector Association="Universite_MVCASPNET_ProjesiModel.FK_Universite_Dersler_Universite_OgretimGorevlileri" ManuallyRouted="false" />
+        <AssociationConnector Association="Universite_MVCASPNET_ProjesiModel.FK_Universite_Ogrenciler_Universite_FakulteBolumleri" ManuallyRouted="false" />
+        <AssociationConnector Association="Universite_MVCASPNET_ProjesiModel.FK_Universite_OgretimGorevlileri_Universite_FakulteBolumleri" ManuallyRouted="false" />
+        <AssociationConnector Association="Universite_MVCASPNET_ProjesiModel.FK_Universite_Projeler_Universite_FakulteBolumleri" ManuallyRouted="false" />
+        <AssociationConnector Association="Universite_MVCASPNET_ProjesiModel.FK_Universite_Ogrenciler_Universite_Projeler" ManuallyRouted="false" />
+        <AssociationConnector Association="Universite_MVCASPNET_ProjesiModel.FK_Universite_Projeler_Universite_OgretimGorevlileri" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

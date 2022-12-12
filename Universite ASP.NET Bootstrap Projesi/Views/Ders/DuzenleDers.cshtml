@@ -1,0 +1,128 @@
+﻿@model  Universite_ASP.NET_Bootstrap_Projesi.Models.Universite_Dersler
+
+@{
+    ViewBag.Title = "DuzenleDers";
+    Layout = "~/Views/Shared/_LayoutPage3ADMIN.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.DersNo)
+    <div class="form-horizontal"></div>
+
+    <h3>Arabalar Ekleme Sayfası</h3>
+
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.DersAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DersAdi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DersAdi, "", new { @class = "text-danger" })
+
+
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DersKodu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DersKodu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DersKodu, "", new { @class = "text-danger" })
+
+
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DersOgretimGorevlisi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DersOgretimGorevlisi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DersOgretimGorevlisi, "", new { @class = "text-danger" })
+
+
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BaslamaTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BaslamaTarihi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BaslamaTarihi, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BitisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BitisTarihi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BitisTarihi, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.FakulteBolumNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FakulteBolumNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FakulteBolumNo, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OgretimGorevlisiNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.OgretimGorevlisiNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OgretimGorevlisiNo, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OgrenciNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.OgrenciNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OgrenciNo, "", new { @class = "text-danger" })
+
+
+        </div>*@
+
+    @*</div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Edit" class="btn btn-success" />
+
+        </div>
+
+
+
+    </div>
+
+
+}
+
+<div>
+
+    @Html.ActionLink("Anasayfa", "Index", null, new { @class = "btn btn-success" })
+</div>
+
+
